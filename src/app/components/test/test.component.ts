@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {chifan, Lsy, shuijiao, xiedaima} from '../../../reducers/app.model';
 import {Observable, Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
+import {Article, User} from '../../service/app.model';
+import {MoviesService} from '../../service/app.service';
 
 @Component({
   selector: 'app-test',
@@ -15,32 +17,71 @@ export class TestComponent implements OnInit {
   tagState$: Observable<Lsy>;
   private tagStateSubscription: Subscription;
 
-  constructor(private store: Store<Lsy>) {
+  displayedColumns: string[] = ['id', 'title', 'author', 'content'];
+  dataSource: Article[] = [];
+
+  user: User[];
+  userState$: Observable<User[]>;
+  private userSubscription: Subscription;
+
+  constructor(
+    private store: Store<any>,
+    private service: MoviesService,
+  ) {
     this.tagState$ = store.select('lsy');
+    this.userState$ = store.select('user');
   }
 
   ngOnInit() {
+    this.service.getAllArticle().subscribe(res => {
+      this.dataSource = res;
+    });
+    setTimeout(() => {
+      this.delayLoadUser();
+    }, 2000);
+
+    this.userSubscription = this.userState$.subscribe(res => {
+      console.log('this is test.component', res);
+      this.user = res;
+    });
   }
 
   changezui(val) {
     this.store.dispatch({
       type: chifan,
-      gaoshiqing: val
+      payload: val
     });
   }
 
   changeshou(val) {
     this.store.dispatch({
       type: shuijiao,
-      gaoshiqing: val
+      payload: val
     });
   }
 
   changetou(val) {
     this.store.dispatch({
       type: xiedaima,
-      gaoshiqing: val
+      payload: val
     });
+  }
+
+  delayLoadUser() {
+    this.store.dispatch({
+      type: 'ok',
+      data: []
+    });
+  }
+
+  getName(id: number): string {
+    if (this.user.length === 0) {
+      return '';
+    }
+    const currentUser: User[] = this.user.filter(item => {
+      return item.id === id;
+    });
+    return currentUser[0].name;
   }
 
 }

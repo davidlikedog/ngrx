@@ -1,15 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import { TestComponent } from './components/test/test.component';
+import {TestComponent} from './components/test/test.component';
 
 import {StoreModule} from '@ngrx/store';
-import {lsyReducer} from '../reducers/app.reducers';
+import {lsyReducer, userReducer} from '../reducers/app.reducers';
 import {EffectsModule} from '@ngrx/effects';
-import {MovieEffects} from './effect/app.effect';
+import {MovieEffects, UserEffects} from './effect/app.effect';
+import {MaterialModule} from './material/material.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,14 @@ import {MovieEffects} from './effect/app.effect';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({lsy: lsyReducer}),
-    EffectsModule.forRoot([MovieEffects])
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
+    StoreModule.forRoot({lsy: lsyReducer, user: userReducer}),
+    EffectsModule.forRoot([MovieEffects, UserEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

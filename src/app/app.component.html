@@ -1,25 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="listBox">
-  <div class="oneBox" style="width: 100%;" *ngFor="let item of talkList" >
-    <div class="one" [ngClass]="{'left':item.type === 'receive','right':item.type === 'send'}">
-      <p>{{item.sender}} - {{item.time | date:'yyyy-MM-dd HH:mm:ss'}}</p>
-      <p>{{item.content}}</p>
-    </div>
-  </div>
-</div>
-<button (click)="init()">init</button>
-<button (click)="login()">login</button>
-<button (click)="isLogin()">isLogin</button>
-<br>
-选择文件<input type="file" id="file_box"><br/>
-<input [(ngModel)]="content" type="text">
-<button (click)="sendSingleMsg()">send to test</button>
-<button (click)="sendSinglePic()">send img</button>
-
-<br>
-<app-test></app-test>
 
 <div>嘴：{{lsy.zui}}</div>
 <div>头：{{lsy.tou}}</div>
 <div>手：{{lsy.shou}}</div>
+
+
+<hr>
+
+<app-test></app-test>
+
 <router-outlet></router-outlet>

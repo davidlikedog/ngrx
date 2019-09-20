@@ -1,3 +1,38 @@
 嘴:<input [(ngModel)]="value1" (change)="changezui(value1)">
 头:<input [(ngModel)]="value2" (change)="changeshou(value2)">
 手:<input [(ngModel)]="value3" (change)="changetou(value3)">
+<hr>
+
+<span>123321</span>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="author">
+    <th mat-header-cell *matHeaderCellDef> author </th>
+    <td mat-cell *matCellDef="let element">{{element.author}} - {{getName(element.author)}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="content">
+    <th mat-header-cell *matHeaderCellDef> content </th>
+    <td mat-cell *matCellDef="let element"> {{element.content}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
