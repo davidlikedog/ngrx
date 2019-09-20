@@ -1,0 +1,17 @@
+.listBox {
+  width: 500px;
+  border: 1px solid pink;
+}
+
+.oneBox {
+  width: 100%;
+  overflow: hidden;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
