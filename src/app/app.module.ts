@@ -13,11 +13,17 @@ import {EffectsModule} from '@ngrx/effects';
 import {MovieEffects, UserEffects} from './effect/app.effect';
 import {MaterialModule} from './material/material.module';
 import {HttpClientModule} from '@angular/common/http';
+import {EntityDataModule} from '@ngrx/data';
+import {entityConfig} from './entity-data/entity-metadata';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {RouterGard} from './guard/router-gard';
+import { MineComponent } from './components/mine/mine.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    MineComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +33,11 @@ import {HttpClientModule} from '@angular/common/http';
     MaterialModule,
     HttpClientModule,
     StoreModule.forRoot({lsy: lsyReducer, user: userReducer}),
-    EffectsModule.forRoot([MovieEffects, UserEffects])
+    EffectsModule.forRoot([MovieEffects, UserEffects]),
+    EntityDataModule.forRoot(entityConfig),
+    StoreRouterConnectingModule.forRoot()
   ],
-  providers: [],
+  providers: [RouterGard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

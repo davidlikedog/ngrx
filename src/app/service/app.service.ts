@@ -26,7 +26,7 @@ export class MoviesService {
   getAllUser(param?): Observable<User[]> {
     console.log('this is app service, get all user', param);
     return new Observable(ob => {
-      this.http.get<UserResponse>(environment.hostURL + '/getUser').subscribe(res => {
+      this.http.get<UserResponse>(environment.hostURL + '/getUser/').subscribe(res => {
         ob.next(res.data);
         ob.complete();
       });
@@ -35,7 +35,7 @@ export class MoviesService {
 
   getAllArticle(): Observable<Article[]> {
     return new Observable(ob => {
-      this.http.get<ArticleResponse>(environment.hostURL + '/getAllArticle').subscribe(res => {
+      this.http.get<ArticleResponse>(environment.hostURL + '/getAllArticle/').subscribe(res => {
         ob.next(res.data);
         ob.complete();
       });
