@@ -1,0 +1,2 @@
+this folder is not work, this helps you automatically send request to the web.
+but it dosen't work the request url is always begin with my own location, can not redirect to the location I want

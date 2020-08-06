@@ -17,6 +17,8 @@ export class TestComponent implements OnInit {
   tagState$: Observable<Lsy>;
   private tagStateSubscription: Subscription;
 
+  testValue = '132';
+
   displayedColumns: string[] = ['id', 'title', 'author', 'content'];
   dataSource: Article[] = [];
 

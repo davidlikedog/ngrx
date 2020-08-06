@@ -19,6 +19,8 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {RouterGard} from './guard/router-gard';
 import { MineComponent } from './components/mine/mine.component';
 
+import {counterReducer} from '../reducers/app.reducers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,10 +34,10 @@ import { MineComponent } from './components/mine/mine.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    StoreModule.forRoot({lsy: lsyReducer, user: userReducer}),
+    StoreModule.forRoot({lsy: lsyReducer, user: userReducer, count: counterReducer}),
     EffectsModule.forRoot([MovieEffects, UserEffects]),
-    EntityDataModule.forRoot(entityConfig),
-    StoreRouterConnectingModule.forRoot()
+    // EntityDataModule.forRoot(entityConfig),
+    // StoreRouterConnectingModule.forRoot()
   ],
   providers: [RouterGard],
   bootstrap: [AppComponent]

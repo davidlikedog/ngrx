@@ -25,6 +25,9 @@ export class MovieEffects {
   }
 }
 
+// mergeMap 的意思是说：它自己的外层是一个Observe，它里面也会是一个Observe，因此如果不用的话需要经过两次的subscription，
+// 用它就相当于直接把两次的订阅结果返回到最高层
+
 @Injectable()
 export class UserEffects {
   loadUsers$ = createEffect((): any => this.actions$.pipe(
@@ -35,7 +38,9 @@ export class UserEffects {
           return {type: '[User API] User Loaded Success', payload: user};
         }),
         catchError(() => EMPTY)
-      ))
+      )), tap(res => {
+      console.log(res);
+    })
     )
   );
 

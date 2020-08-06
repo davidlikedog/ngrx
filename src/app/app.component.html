@@ -8,3 +8,14 @@
 <a routerLink="/mine">go to mine</a>
 <a routerLink="/">go to home</a>
 <a routerLink="/child">go to test</a>
+
+
+<hr>
+
+<div style="font-size: 20px;font-weight: 600;">Current Count: {{ data.count }}</div>
+<div style="font-size: 20px;font-weight: 600;">Current Count: {{ data.extra }}</div>
+operation:
+<button (click)="calculate('+')">+</button>
+<button (click)="calculate('-')">-</button>
+<button (click)="calculate('reset')">reset</button>
+<button (click)="calculate('set')">set</button>
